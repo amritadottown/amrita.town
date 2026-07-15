@@ -170,12 +170,19 @@
     "batch": "22-26",
     "feeds": ["https://ritesh-koushik.vercel.app"]
   },
-	{
+  {
     "name": "Kishore R",
     "website": "kishoreravikumar.in",
     "branch": "AIE",
     "campus": "Amritapuri",
     "batch": "23-27",
     "feeds": ["https://kishoreravikumar.in/rss.xml"]
+  },
+  {
+    "name": "Karan Singh Bagga",
+    "website": "karanbagga.com",
+    "branch": "CSE",
+    "campus": "Bengaluru",
+    "batch": "19-23"
   }
 ]
