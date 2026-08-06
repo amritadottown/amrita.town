@@ -177,5 +177,13 @@
     "campus": "Amritapuri",
     "batch": "23-27",
     "feeds": ["https://kishoreravikumar.in/rss.xml"]
+  },
+	{
+    "name": "Samith Reddy",
+    "website": "samithreddy.vercel.app/blog",
+    "branch": "CSE",
+    "campus": "Coimbatore",
+    "batch": "24-28",
+    "feeds": ["https://samithreddy.vercel.app/blog/rss.xml"]
   }
 ]
