@@ -177,5 +177,13 @@
     "campus": "Amritapuri",
     "batch": "23-27",
     "feeds": ["https://kishoreravikumar.in/rss.xml"]
+  },
+  {
+	"name": "Saket Bakshi",
+	"website": "kanhanimbus.github.io",
+	"branch": "ECE",
+	"campus": "Bengaluru",
+	"batch": "25-29",
+	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
   }
 ]
