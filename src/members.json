@@ -6,15 +6,6 @@
 		"campus": "",
 		"batch": ""
 	},
-	
-	{
-		"name": "Aadi Vijayakumar Nair",
-		"website": "https://aadi-my.web.app/",
-		"branch": "ECE",
-		"campus": "Bengaluru",
-		"batch": "26-30",
-		"feeds": ["https://aadi-my.web.app/rss.xml"]
-	},
 	{
 		"name": "Nikhil Bharadwaj",
 		"website": "heftymouse.me",
@@ -172,6 +163,14 @@
     "batch": "23-27",
     "feeds": ["https://kishoreravikumar.in/rss.xml"]
   },
+	{
+		"name": "Aadi Vijayakumar Nair",
+		"website": "aadi-my.web.app",
+		"branch": "ECE",
+		"campus": "Bengaluru",
+		"batch": "26-30",
+		"feeds": ["https://aadi-my.web.app/rss.xml"]
+	},
   {
 	"name": "Saket Bakshi",
 	"website": "kanhanimbus.github.io",
