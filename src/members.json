@@ -120,13 +120,6 @@
 		"batch": "18-22"
 	},
 	{
-		"name": "Mitran Gokulnath",
-		"website": "mitran.dev",
-		"branch": "EAC",
-		"campus": "Bengaluru",
-		"batch": "24-28"
-	},
-	{
 		"name": "Hridesh MG",
 		"website": "hrideshmg.com",
 		"branch": "CSE",
@@ -140,14 +133,6 @@
 		"branch": "ECE",
 		"campus": "Coimbatore",
 		"batch": "20-24"
-	},
-	{
-		"name": "Shashank Amireddy",
-		"website": "quantumloom.in",
-		"branch": "CSE",
-		"campus": "Bengaluru",
-		"batch": "22-26",
-		"feeds": ["https://quantumloom.in/rss.xml"]
 	},
 	{
 		"name": "Namish Pande",
