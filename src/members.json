@@ -178,5 +178,14 @@
 	"campus": "Bengaluru",
 	"batch": "25-29",
 	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
-  }
+  },
+		{
+		"name": "ChiruDeep Reddy",
+		"website": "www.chirudeep.tech",
+		"branch": "ECE",
+		"campus": "Bengaluru",
+		"batch": "24-28",
+		"feeds": ["https://chirudeep.tech/feed.xml"]
+	}
+
 ]
