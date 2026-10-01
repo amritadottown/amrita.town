@@ -178,5 +178,13 @@
 	"campus": "Bengaluru",
 	"batch": "25-29",
 	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
-  }
+  },
+	{
+		"name": "Pranav M Praveen",
+		"website": "cosmic.is-a.dev",
+		"branch": "RAE",
+		"campus": "Amritapuri",
+		"batch": "26-30",
+		"feeds": ["https://cosmic.is-a.dev/feed.xml"]
+	},
 ]
