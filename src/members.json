@@ -12,7 +12,9 @@
 		"branch": "CSE",
 		"campus": "Bengaluru",
 		"batch": "23-27",
-		"feeds": ["https://heftymouse.me/blog/rss.xml"]
+		"feeds": [
+			"https://heftymouse.me/blog/rss.xml"
+		]
 	},
 	{
 		"name": "Adithya Nair",
@@ -20,7 +22,9 @@
 		"branch": "AID",
 		"campus": "Bengaluru",
 		"batch": "23-27",
-		"feeds": ["https://adithyanair.com/rss.xml"]
+		"feeds": [
+			"https://adithyanair.com/rss.xml"
+		]
 	},
 	{
 		"name": "Sasank Reddy",
@@ -28,7 +32,9 @@
 		"branch": "AIE",
 		"campus": "Bengaluru",
 		"batch": "22-26",
-		"feeds": ["https://decentparadox.me/rss.xml"]
+		"feeds": [
+			"https://decentparadox.me/rss.xml"
+		]
 	},
 	{
 		"name": "Ajay Ratnam",
@@ -36,7 +42,9 @@
 		"branch": "CSE",
 		"campus": "Bengaluru",
 		"batch": "22-26",
-		"feeds": ["https://ajratnam.github.io/atom.xml"]
+		"feeds": [
+			"https://ajratnam.github.io/atom.xml"
+		]
 	},
 	{
 		"name": "Monish N Pillay",
@@ -58,7 +66,9 @@
 		"branch": "CSE",
 		"campus": "Bengaluru",
 		"batch": "24-28",
-		"feeds": ["https://nithitsuki.com/index.xml"]
+		"feeds": [
+			"https://nithitsuki.com/index.xml"
+		]
 	},
 	{
 		"name": "Archishman Ghosh",
@@ -66,7 +76,9 @@
 		"branch": "CSE",
 		"campus": "Bengaluru",
 		"batch": "22-26",
-		"feeds": ["https://irregular25.in/rss.xml"]
+		"feeds": [
+			"https://irregular25.in/rss.xml"
+		]
 	},
 	{
 		"name": "Rishabh Lal",
@@ -116,7 +128,9 @@
 		"branch": "CSE",
 		"campus": "Amritapuri",
 		"batch": "23-27",
-		"feeds": ["https://hrideshmg.com/index.xml"]
+		"feeds": [
+			"https://hrideshmg.com/index.xml"
+		]
 	},
 	{
 		"name": "Hari Varsha V",
@@ -139,44 +153,61 @@
 		"campus": "Bengaluru",
 		"batch": "24-28"
 	},
-  {
-    "name": "Praneeth V",
-    "website": "bananameatpatty.vercel.app",
-    "branch": "cse",
-    "campus": "Coimbatore",
-    "batch": "22-26",
-    "feeds": ["http://bananameatpatty.vercel.app/blog/index.xml"]
-  },
-  {
-    "name": "Ritesh Koushik",
-    "website": "ritesh-koushik.vercel.app",
-    "branch": "CSE",
-    "campus": "Coimbatore",
-    "batch": "22-26",
-    "feeds": ["https://ritesh-koushik.vercel.app"]
-  },
 	{
-    "name": "Kishore R",
-    "website": "kishoreravikumar.in",
-    "branch": "AIE",
-    "campus": "Amritapuri",
-    "batch": "23-27",
-    "feeds": ["https://kishoreravikumar.in/rss.xml"]
-  },
+		"name": "Praneeth V",
+		"website": "bananameatpatty.vercel.app",
+		"branch": "cse",
+		"campus": "Coimbatore",
+		"batch": "22-26",
+		"feeds": [
+			"http://bananameatpatty.vercel.app/blog/index.xml"
+		]
+	},
+	{
+		"name": "Ritesh Koushik",
+		"website": "ritesh-koushik.vercel.app",
+		"branch": "CSE",
+		"campus": "Coimbatore",
+		"batch": "22-26",
+		"feeds": [
+			"https://ritesh-koushik.vercel.app"
+		]
+	},
+	{
+		"name": "Kishore R",
+		"website": "kishoreravikumar.in",
+		"branch": "AIE",
+		"campus": "Amritapuri",
+		"batch": "23-27",
+		"feeds": [
+			"https://kishoreravikumar.in/rss.xml"
+		]
+	},
 	{
 		"name": "Aadi Vijayakumar Nair",
 		"website": "aadi-my.web.app",
 		"branch": "ECE",
 		"campus": "Bengaluru",
 		"batch": "26-30",
-		"feeds": ["https://aadi-my.web.app/rss.xml"]
+		"feeds": [
+			"https://aadi-my.web.app/rss.xml"
+		]
 	},
-  {
-	"name": "Saket Bakshi",
-	"website": "kanhanimbus.github.io",
-	"branch": "ECE",
-	"campus": "Bengaluru",
-	"batch": "25-29",
-	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
-  }
+	{
+		"name": "Saket Bakshi",
+		"website": "kanhanimbus.github.io",
+		"branch": "ECE",
+		"campus": "Bengaluru",
+		"batch": "25-29",
+		"feeds": [
+			"https://kanhanimbus.github.io/feed.xml"
+		]
+	},
+	{
+		"name": "Rahul L S",
+		"website": "rahul-ls-ai.vercel.app",
+		"branch": "AIE",
+		"campus": "Coimbatore",
+		"batch": "24-28"
+	}
 ]
