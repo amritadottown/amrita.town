@@ -178,5 +178,12 @@
 	"campus": "Bengaluru",
 	"batch": "25-29",
 	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
-  }
+  },
+	{
+  "name": "Midhunan Vijendra Prabhaharan",
+  "website": "midhunan.vercel.app",
+  "branch": "CSE",
+  "campus": "Coimbatore",
+  "batch": "23-27"
+	}
 ]
