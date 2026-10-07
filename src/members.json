@@ -222,5 +222,12 @@
     "feeds": [
       "https://thatarcticpenguin.is-a.dev/blog/rss.xml"
     ]
+  },
+    {
+    "name": "Pandla Naga Sriharsha Goud",
+    "website": "harsha.is-a.dev",
+    "branch": "AIE",
+    "campus": "Amravati",
+    "batch": "25-29",
   }
 ]
