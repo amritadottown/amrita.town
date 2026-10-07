@@ -186,5 +186,13 @@
  "campus": "Amritapuri"
  "batch": "26-30",
  "feeds": ["https://cosmic.is-a.dev/feed.xml"]
-}
+},
+{
+	  "name": "Sabareesh Vinodh",
+	  "website": "thatarcticpenguin.is-a.dev",
+	  "branch": "CSE",
+	  "campus": "Amaravati",
+	  "batch": "25-29",
+	  "feeds": ["https://thatarcticpenguin.is-a.dev/blog/rss.xml"]
+  }
 ]
