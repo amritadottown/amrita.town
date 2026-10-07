@@ -178,5 +178,13 @@
 	"campus": "Bengaluru",
 	"batch": "25-29",
 	"feeds": ["https://kanhanimbus.github.io/feed.xml"]
+  },
+  {
+	  "name": "Sabareesh Vinodh",
+	  "website": "thatarcticpenguin.is-a.dev",
+	  "branch": "CSE",
+	  "campus": "Amaravati",
+	  "batch": "25-29",
+	  "feeds": ["https://thatarcticpenguin.is-a.dev/blog/rss.xml"]
   }
 ]
