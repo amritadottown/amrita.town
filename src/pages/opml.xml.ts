@@ -5,7 +5,7 @@ import {
 	FEED_TITLE,
 	escapeXml,
 	isAbsoluteHttpUrl,
-	toRfc822,
+	toRfc822Ist,
 } from "@/lib/feeds";
 
 let cache: FeedCache = {};
@@ -107,10 +107,11 @@ function buildOpml(feedCache: FeedCache): string {
 	const outlines = collectOutlines(feedCache).sort((a, b) =>
 		a.name.localeCompare(b.name, "en"),
 	);
-	const now = toRfc822(new Date());
+	const now = toRfc822Ist(new Date());
 
 	const lines: string[] = [
 		'<?xml version="1.0" encoding="UTF-8"?>',
+		'<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>',
 		'<opml version="2.0">',
 		"\t<head>",
 		`\t\t<title>${FEED_TITLE}</title>`,
@@ -139,6 +140,6 @@ export const prerender = true;
 export const GET = (async () =>
 	new Response(buildOpml(cache), {
 		headers: {
-			"Content-Type": "text/x-opml; charset=utf-8",
+			"Content-Type": "text/xml; charset=utf-8",
 		},
 	})) satisfies APIRoute;

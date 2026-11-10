@@ -41,10 +41,7 @@
     "website": "ajratnam.github.io",
     "branch": "CSE",
     "campus": "Bengaluru",
-    "batch": "22-26",
-    "feeds": [
-      "https://ajratnam.github.io/atom.xml"
-    ]
+    "batch": "22-26"
   },
   {
     "name": "Monish N Pillay",
@@ -58,7 +55,10 @@
     "website": "compileartisan.dev",
     "branch": "AIE",
     "campus": "Bengaluru",
-    "batch": "23-27"
+    "batch": "23-27",
+    "feeds": [
+      "https://compileartisan.dev/rss.xml"
+    ]
   },
   {
     "name": "Nithilan Rameshkumar",
@@ -85,14 +85,20 @@
     "website": "rishblol.github.io",
     "branch": "CSE",
     "campus": "Bengaluru",
-    "batch": "23-27"
+    "batch": "23-27",
+    "feeds": [
+      "https://rishblol.github.io/rss.xml"
+    ]
   },
   {
     "name": "Nandagopal Menon",
     "website": "ngpal.github.io/brainspace",
     "branch": "CSE",
     "campus": "Coimbatore",
-    "batch": "23-27"
+    "batch": "23-27",
+    "feeds": [
+      "https://ngpal.github.io/brainspace/index.xml"
+    ]
   },
   {
     "name": "Noel Tom",
@@ -144,7 +150,10 @@
     "website": "namishh.com",
     "branch": "CSE",
     "campus": "Amaravati",
-    "batch": "25-29"
+    "batch": "25-29",
+    "feeds": [
+      "https://namishh.com/rss.xml"
+    ]
   },
   {
     "name": "Chaturya Reddy",
@@ -160,7 +169,7 @@
     "campus": "Coimbatore",
     "batch": "22-26",
     "feeds": [
-      "http://bananameatpatty.vercel.app/blog/index.xml"
+      "https://bananameatpatty.vercel.app/blog/index.xml"
     ]
   },
   {
@@ -170,7 +179,7 @@
     "campus": "Coimbatore",
     "batch": "22-26",
     "feeds": [
-      "https://ritesh-koushik.vercel.app"
+      "https://ritesh-koushik.vercel.app/rss.xml"
     ]
   },
   {

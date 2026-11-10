@@ -9,7 +9,7 @@ import {
 	fallbackDate,
 	selectRecentPosts,
 	stripHtml,
-	toRfc822,
+	toRfc822Ist,
 	truncate,
 } from "@/lib/feeds";
 
@@ -29,13 +29,14 @@ function buildRss(feedCache: FeedCache): string {
 
 	const lines: string[] = [
 		'<?xml version="1.0" encoding="UTF-8"?>',
+		'<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>',
 		'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
 		"\t<channel>",
 		`\t\t<title>${escapeXml(FEED_TITLE)}</title>`,
 		`\t\t<link>${SITE}/blogroll</link>`,
 		`\t\t<description>${escapeXml(FEED_DESCRIPTION)}</description>`,
 		"\t\t<language>en</language>",
-		`\t\t<lastBuildDate>${toRfc822(lastBuildDate)}</lastBuildDate>`,
+		`\t\t<lastBuildDate>${toRfc822Ist(lastBuildDate)}</lastBuildDate>`,
 		`\t\t<atom:link rel="self" type="application/rss+xml" href="${SITE}/rss.xml" />`,
 		"\t\t<generator>astro</generator>",
 	];
@@ -52,7 +53,7 @@ function buildRss(feedCache: FeedCache): string {
 		lines.push(
 			`\t\t\t<guid isPermaLink="true">${escapeXml(post.link)}</guid>`,
 		);
-		lines.push(`\t\t\t<pubDate>${toRfc822(date)}</pubDate>`);
+		lines.push(`\t\t\t<pubDate>${toRfc822Ist(date)}</pubDate>`);
 		lines.push(`\t\t\t<dc:creator>${escapeXml(member.name)}</dc:creator>`);
 		if (description) {
 			lines.push(`\t\t\t<description>${escapeXml(description)}</description>`);
@@ -71,6 +72,6 @@ export const prerender = true;
 export const GET = (async () =>
 	new Response(buildRss(cache), {
 		headers: {
-			"Content-Type": "application/rss+xml; charset=utf-8",
+			"Content-Type": "text/xml; charset=utf-8",
 		},
 	})) satisfies APIRoute;

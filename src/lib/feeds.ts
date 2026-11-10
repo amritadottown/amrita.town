@@ -185,12 +185,41 @@ export function escapeXml(text: string): string {
 		.replace(/'/g, "&apos;");
 }
 
-/** RFC 822 / RFC 1123 date, as used by RSS 2.0. */
-export function toRfc822(date: Date): string {
-	return date.toUTCString();
+/** India Standard Time is a fixed +05:30 offset and has no daylight saving. */
+const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
+const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTH_NAMES = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec",
+];
+
+function pad2(value: number): string {
+	return String(value).padStart(2, "0");
 }
 
-/** RFC 3339 date with a Z offset, as used by Atom 1.0. */
-export function toRfc3339(date: Date): string {
-	return date.toISOString();
+/** Shift an instant so its UTC getters read as IST wall-clock parts. */
+function istWallClock(date: Date): Date {
+	return new Date(date.getTime() + IST_OFFSET_MS);
+}
+
+/** RFC 822 / RFC 1123 date in IST (+0530), as used by RSS 2.0. */
+export function toRfc822Ist(date: Date): string {
+	const d = istWallClock(date);
+	return `${DAY_NAMES[d.getUTCDay()]}, ${pad2(d.getUTCDate())} ${MONTH_NAMES[d.getUTCMonth()]} ${d.getUTCFullYear()} ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}:${pad2(d.getUTCSeconds())} +0530`;
+}
+
+/** RFC 3339 date with a fixed +05:30 offset, as used by Atom 1.0. */
+export function toRfc3339Ist(date: Date): string {
+	const d = istWallClock(date);
+	return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}T${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}:${pad2(d.getUTCSeconds())}+05:30`;
 }

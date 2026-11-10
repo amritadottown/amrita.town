@@ -9,7 +9,7 @@ import {
 	fallbackDate,
 	selectRecentPosts,
 	stripHtml,
-	toRfc3339,
+	toRfc3339Ist,
 	truncate,
 } from "@/lib/feeds";
 
@@ -35,11 +35,12 @@ function buildAtom(feedCache: FeedCache): string {
 
 	const lines: string[] = [
 		'<?xml version="1.0" encoding="UTF-8"?>',
+		'<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>',
 		'<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">',
 		`\t<id>${escapeXml(FEED_ID)}</id>`,
 		`\t<title>${escapeXml(FEED_TITLE)}</title>`,
 		`\t<subtitle>${escapeXml(FEED_DESCRIPTION)}</subtitle>`,
-		`\t<updated>${toRfc3339(updated)}</updated>`,
+		`\t<updated>${toRfc3339Ist(updated)}</updated>`,
 		"\t<author>",
 		"\t\t<name>amrita.town</name>",
 		"\t</author>",
@@ -53,7 +54,7 @@ function buildAtom(feedCache: FeedCache): string {
 		const summary = post.description
 			? truncate(stripHtml(post.description), MAX_SUMMARY)
 			: "";
-		const timestamp = toRfc3339(date);
+		const timestamp = toRfc3339Ist(date);
 
 		lines.push("\t<entry>");
 		lines.push(`\t\t<id>${escapeXml(entryId(post.link))}</id>`);
@@ -80,6 +81,6 @@ export const prerender = true;
 export const GET = (async () =>
 	new Response(buildAtom(cache), {
 		headers: {
-			"Content-Type": "application/atom+xml; charset=utf-8",
+			"Content-Type": "text/xml; charset=utf-8",
 		},
 	})) satisfies APIRoute;
