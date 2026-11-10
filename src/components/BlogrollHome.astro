@@ -1,5 +1,6 @@
 ---
-import type { FeedCache, FeedPost } from "@/types";
+import type { FeedCache } from "@/types";
+import { aggregatePosts } from "@/lib/feeds";
 
 interface Props {
 	limit?: number;
@@ -14,22 +15,7 @@ try {
 	// feed-cache not generated yet
 }
 
-const allPosts: { post: FeedPost; member: { name: string; website: string } }[] = [];
-
-for (const [website, memberData] of Object.entries(cache)) {
-	for (const post of memberData.posts) {
-		allPosts.push({
-			post,
-			member: { name: memberData.name, website: memberData.website },
-		});
-	}
-}
-
-allPosts.sort(
-	(a, b) => new Date(b.post.published).getTime() - new Date(a.post.published).getTime(),
-);
-
-const topPosts = allPosts.slice(0, limit);
+const topPosts = aggregatePosts(cache).slice(0, limit);
 ---
 
 <section>

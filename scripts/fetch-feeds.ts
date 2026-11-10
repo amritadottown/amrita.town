@@ -27,9 +27,17 @@ interface FeedPost {
 	description?: string;
 }
 
+type FeedFormat = "rss" | "atom";
+
+interface FeedSource {
+	url: string;
+	format: FeedFormat;
+}
+
 interface MemberFeedCache {
 	name: string;
 	website: string;
+	feeds?: FeedSource[];
 	posts: FeedPost[];
 }
 
@@ -203,38 +211,48 @@ function extractLink(item: ParsedItem): string | undefined {
 	return item.link["@_href"];
 }
 
-function parseFeedItems(xml: string, feedUrl: string): FeedPost[] {
+function parseFeedItems(
+	xml: string,
+	feedUrl: string,
+): { format: FeedFormat; posts: FeedPost[] } | null {
 	const doc = parser.parse(xml);
 
 	// ---- RSS 2.0 ----
 	const channel = doc?.rss?.channel;
 	if (channel) {
 		const items: ParsedItem[] = channel.item ?? [];
-		if (!Array.isArray(items)) return [];
-		return items.map((item: ParsedItem) => ({
-			title: extractText(item.title) ?? "(untitled)",
-			link: extractLink(item) ?? feedUrl,
-			published: parseDate(item.pubDate ?? ""),
-			description: extractText(item.description),
-		}));
+		return {
+			format: "rss",
+			posts: Array.isArray(items)
+				? items.map((item: ParsedItem) => ({
+						title: extractText(item.title) ?? "(untitled)",
+						link: extractLink(item) ?? feedUrl,
+						published: parseDate(item.pubDate ?? ""),
+						description: extractText(item.description),
+					}))
+				: [],
+		};
 	}
 
 	// ---- Atom ----
 	const feed = doc?.feed;
 	if (feed) {
 		const entries: ParsedItem[] = feed.entry ?? [];
-		if (!Array.isArray(entries)) return [];
-		return entries.map((entry: ParsedItem) => ({
-			title: extractText(entry.title) ?? "(untitled)",
-			link: extractLink(entry) ?? feedUrl,
-			published: parseDate(
-				entry.published ?? entry.updated ?? "",
-			),
-			description: extractText(entry.summary ?? entry.content),
-		}));
+		return {
+			format: "atom",
+			posts: Array.isArray(entries)
+				? entries.map((entry: ParsedItem) => ({
+						title: extractText(entry.title) ?? "(untitled)",
+						link: extractLink(entry) ?? feedUrl,
+						published: parseDate(entry.published ?? entry.updated ?? ""),
+						description: extractText(entry.summary ?? entry.content),
+					}))
+				: [],
+		};
 	}
 
-	return [];
+	// Not an RSS or Atom document (for example, an HTML page)
+	return null;
 }
 
 // ---------------------------------------------------------------------------
@@ -298,6 +316,7 @@ async function main() {
 
 				// Fetch all feeds for this member
 				const allPosts: FeedPost[] = [];
+				const feedResults: { source: FeedSource; postCount: number }[] = [];
 				for (const feedUrl of feedUrls) {
 					totalFeeds++;
 					try {
@@ -310,13 +329,24 @@ async function main() {
 							continue;
 						}
 						const xml = await res.text();
-						const posts = parseFeedItems(xml, feedUrl);
-						if (posts.length === 0) {
+						const parsed = parseFeedItems(xml, feedUrl);
+						if (!parsed) {
+							console.log(
+								`  ⚠️  ${website}: feed ${feedUrl} is not an RSS or Atom document`,
+							);
+							failCount++;
+							continue;
+						}
+						if (parsed.posts.length === 0) {
 							console.log(
 								`  ⚠️  ${website}: feed ${feedUrl} has no items`,
 							);
 						}
-						allPosts.push(...posts);
+						allPosts.push(...parsed.posts);
+						feedResults.push({
+							source: { url: feedUrl, format: parsed.format },
+							postCount: parsed.posts.length,
+						});
 						successCount++;
 					} catch (err) {
 						console.log(
@@ -326,7 +356,8 @@ async function main() {
 					}
 				}
 
-				if (allPosts.length === 0) return;
+				// No URL parsed as a real feed for this member
+				if (feedResults.length === 0) return;
 
 				// Sort by date descending, deduplicate by link
 				const seen = new Set<string>();
@@ -344,17 +375,36 @@ async function main() {
 						return true;
 					});
 
-				if (unique.length === 0) return;
+				// Keep feeds that yielded posts first so OPML can prefer one of them
+				const orderedFeeds = [
+					...feedResults.filter((f) => f.postCount > 0),
+					...feedResults.filter((f) => f.postCount === 0),
+				];
+
+				const seenFeeds = new Set<string>();
+				const resolvedFeeds: FeedSource[] = [];
+				for (const { source } of orderedFeeds) {
+					if (seenFeeds.has(source.url)) continue;
+					seenFeeds.add(source.url);
+					resolvedFeeds.push(source);
+				}
 
 				cache[website] = {
 					name,
 					website,
+					feeds: resolvedFeeds,
 					posts: unique,
 				};
 
-				console.log(
-					`  ✅ ${website}: ${unique.length} posts from ${feedUrls.length} feed(s)`,
-				);
+				if (unique.length === 0) {
+					console.log(
+						`  · ${website}: 0 posts, ${resolvedFeeds.length} feed${resolvedFeeds.length === 1 ? "" : "s"} kept for OPML`,
+					);
+				} else {
+					console.log(
+						`  ✅ ${website}: ${unique.length} posts from ${resolvedFeeds.length} feed(s)`,
+					);
+				}
 			}),
 		);
 
@@ -378,7 +428,7 @@ async function main() {
 		0,
 	);
 	console.log(
-		`📊 Summary: ${memberCount}/${membersToProcess.length} members with feeds, ${postCount} posts total, ${totalFeeds} feeds fetched in ${duration}s`,
+		`📊 Summary: ${memberCount}/${membersToProcess.length} members cached, ${successCount} parsed feed(s), ${postCount} posts total, ${totalFeeds} feed(s) attempted in ${duration}s`,
 	);
 	if (failCount > 0) {
 		console.log(`   ${failCount} feed(s) failed to fetch`);

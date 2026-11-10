@@ -14,10 +14,17 @@ export interface FeedPost {
 	description?: string;
 }
 
+export type FeedFormat = "rss" | "atom";
+
+export interface FeedSource {
+	url: string;
+	format: FeedFormat;
+}
+
 export interface MemberFeedCache {
 	name: string;
 	website: string;
-	favicon: string;
+	feeds?: FeedSource[];
 	posts: FeedPost[];
 }
 
